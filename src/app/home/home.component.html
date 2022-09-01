@@ -1,0 +1,30 @@
+<div class="grid card-center">
+    <p-card class="col-6 col-offset-3">
+        <div class="center">
+            <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)"
+                (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
+                <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+                    <div>
+                        <div class="col text-center">
+                            <i class="pi pi-upload" style="font-size: 2rem"></i>
+                        </div>
+                        <div class="col text-center">
+                            Arraste o arquivo de log aqui
+                        </div>
+                        <div class="col text-center">
+                            ou
+                        </div>
+                        <div class="col flex align-items-center justify-content-center">
+                            <button pButton type="button" class="p-button-info" (click)="openFileSelector()">Browse
+                                Files</button>
+                        </div>
+                    </div>
+                </ng-template>
+            </ngx-file-drop>
+        </div>
+    </p-card>
+
+
+    <p-toast></p-toast>
+    <p-confirmDialog [style]="{'white-space': 'pre-wrap'}" [baseZIndex]="10000"></p-confirmDialog>
+</div>

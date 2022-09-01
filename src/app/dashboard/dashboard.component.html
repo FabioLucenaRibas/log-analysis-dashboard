@@ -1,0 +1,181 @@
+<p-table #dt1 [value]="logs" dataKey="id" responsiveLayout="scroll" [paginator]="true" [rows]="10"
+    [showCurrentPageReport]="true" responsiveLayout="scroll"
+    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+    [rowsPerPageOptions]="[10,25,50,100]"
+    [globalFilterFields]="['ecs.version','user.name','canal','service.name', 'service.version', 'container.name', 
+    'tags','tracing.uuid','tracing.request_id', 'tracing.idSessaoFrwk', 'log.level', 'log.logger', 'message', 'error.stack_hash', 'error.stack_trace']">
+    <ng-template pTemplate="caption">
+        <div class="p-d-flex">
+            <button type="button" pButton class="p-button-text p-button-rounded p-button-plain mr-2"
+                [routerLink]="['../home']" icon="pi pi-chevron-left"></button>
+
+            <span class="p-input-icon-left p-ml-auto">
+                <i class="pi pi-search"></i>
+                <input #filtro pInputText type="text" (input)="dt1.filterGlobal(filtro.value, 'contains')"
+                    placeholder="Pesquisar palavra-chave" />
+            </span>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th style="width: 3rem"></th>
+            <th style="flex-basis:25%" pSortableColumn="@timestamp">@timestamp <p-sortIcon field="@timestamp">
+                </p-sortIcon>
+            </th>
+            <th style="flex-basis:25%" pSortableColumn="log.level">Level <p-sortIcon field="log.level"></p-sortIcon>
+            </th>
+            <th style="flex-basis:25%" pSortableColumn="service.name">Service <p-sortIcon field="service.name">
+                </p-sortIcon>
+            </th>
+            <th style="flex-basis:25%" pSortableColumn="message">message <p-sortIcon field="message"></p-sortIcon>
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-log let-expanded="expanded">
+        <tr>
+            <td>
+                <button type="button" pButton pRipple [pRowToggler]="log"
+                    class="p-button-text p-button-rounded p-button-plain"
+                    [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+            </td>
+            <td style="flex-basis:25%">{{log?.['@timestamp'] | date : 'dd/MM/yyyy HH:mm:ss:SSS'}}</td>
+            <td style="flex-basis:25%">{{log?.log?.level}}</td>
+            <td style="flex-basis:25%">{{log?.service?.name}}</td>
+            <td style="flex-basis:25%">{{log?.message.substring(0,100) + '..'}}</td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="rowexpansion" let-log>
+        <tr>
+            <td colspan="5">
+                <div class="p-3 max-w-screen overflow-y -auto">
+                    <p-tabView>
+                        <p-tabPanel header="Table">
+                            <div class="max-w-screen overflow-y -auto">
+                                <table class="p-datatable-table">
+                                    <tr>
+                                        <td style="flex-basis:100px">ecs.version</td>
+                                        <td>
+                                            <input type="text" disabled="true" pInputText
+                                                class="p-inputtext-sm w-full max-w-screen"
+                                                [value]="log?.ecs?.version" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="flex-basis:100px">user.name</td>
+                                        <td>
+                                            <input type="text" disabled="true" pInputText
+                                                class="p-inputtext-sm w-full max-w-screen" [value]="log?.user?.name" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="flex-basis:100px">canal</td>
+                                        <td>
+                                            <input type="text" disabled="true" pInputText
+                                                class="p-inputtext-sm w-full max-w-screen" [value]="log?.canal" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="flex-basis:100px">service.name</td>
+                                        <td>
+                                            <input type="text" disabled="true" pInputText
+                                                class="p-inputtext-sm w-full max-w-screen"
+                                                [value]="log?.service?.name" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="flex-basis:100px">service.version</td>
+                                        <td>
+                                            <input type="text" disabled="true" pInputText
+                                                class="p-inputtext-sm w-full max-w-screen"
+                                                [value]="log?.service?.version" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="flex-basis:100px">container.name</td>
+                                        <td>
+                                            <input type="text" disabled="true" pInputText
+                                                class="p-inputtext-sm w-full max-w-screen"
+                                                [value]="log?.container?.name" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="flex-basis:100px">tags</td>
+                                        <td>
+                                            <input type="text" disabled="true" pInputText
+                                                class="p-inputtext-sm w-full max-w-screen" [value]="log?.tags" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="flex-basis:100px">tracing.uuid</td>
+                                        <td>
+                                            <input type="text" disabled="true" pInputText
+                                                class="p-inputtext-sm w-full max-w-screen"
+                                                [value]="log?.tracing?.uuid" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="flex-basis:100px">tracing.request_id</td>
+                                        <td>
+                                            <input type="text" disabled="true" pInputText
+                                                class="p-inputtext-sm w-full max-w-screen"
+                                                [value]="log?.tracing?.request_id" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="flex-basis:100px">tracing.idSessaoFrwk</td>
+                                        <td>
+                                            <input type="text" disabled="true" pInputText
+                                                class="p-inputtext-sm w-full max-w-screen"
+                                                [value]="log?.tracing?.idSessaoFrwk" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="flex-basis:100px">log.level</td>
+                                        <td>
+                                            <input type="text" disabled="true" pInputText
+                                                class="p-inputtext-sm w-full max-w-screen" [value]="log?.log?.level" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="flex-basis:100px">log.logger</td>
+                                        <td>
+                                            <input type="text" disabled="true" pInputText
+                                                class="p-inputtext-sm w-full max-w-screen" [value]="log?.log?.logger" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="flex-basis:100px">message</td>
+                                        <td>
+                                            <textarea disabled="true" class="textarea" [rows]="5" [cols]="30"
+                                                pInputTextarea>{{log?.message}}</textarea>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="flex-basis:100px">error.stack_hash</td>
+                                        <td>
+                                            <input type="text" disabled="true" pInputText
+                                                class="p-inputtext-sm w-full max-w-screen"
+                                                [value]="log?.error?.stack_hash" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="flex-basis:100px">error.stack_trace</td>
+                                        <td>
+                                            <input type="text" disabled="true" pInputText
+                                                class="p-inputtext-sm w-full max-w-screen"
+                                                [value]="log?.error?.stack_trace" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </p-tabPanel>
+                        <p-tabPanel header="Source">
+                            <textarea class="textarea" [rows]="5" [cols]="30" pInputTextarea>{{log | json}}</textarea>
+
+                        </p-tabPanel>
+                    </p-tabView>
+                </div>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
