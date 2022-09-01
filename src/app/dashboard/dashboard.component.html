@@ -53,6 +53,22 @@
                             <div class="max-w-screen overflow-y -auto">
                                 <table class="p-datatable-table">
                                     <tr>
+                                        <td style="flex-basis:100px">@timestamp</td>
+                                        <td>
+                                            <input type="text" disabled="true" pInputText
+                                                class="p-inputtext-sm w-full max-w-screen"
+                                                [value]="log?.['@timestamp']" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="flex-basis:100px">@version</td>
+                                        <td>
+                                            <input type="text" disabled="true" pInputText
+                                                class="p-inputtext-sm w-full max-w-screen"
+                                                [value]="log?.['@version']" />
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <td style="flex-basis:100px">ecs.version</td>
                                         <td>
                                             <input type="text" disabled="true" pInputText
@@ -169,9 +185,8 @@
                                 </table>
                             </div>
                         </p-tabPanel>
-                        <p-tabPanel header="Source">
+                        <p-tabPanel header="JSON">
                             <textarea class="textarea" [rows]="5" [cols]="30" pInputTextarea>{{log | json}}</textarea>
-
                         </p-tabPanel>
                     </p-tabView>
                 </div>
