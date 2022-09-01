@@ -8,6 +8,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build-github-pages": "ng build --output-path docs --base-href https://fabiolucenaribas.github.io/log-analysis-dashboard/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
