@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { NgxFileDropEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
 import { LogObject } from '../model/LogObject.model';
 import { v4 as uuidv4 } from 'uuid';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,8 @@ import { v4 as uuidv4 } from 'uuid';
 export class HomeComponent implements OnInit {
 
   constructor(
-    private router: Router
+    private router: Router,
+    private messageService: MessageService,
   ) { }
 
   ngOnInit(): void {
@@ -36,22 +38,31 @@ export class HomeComponent implements OnInit {
           const fileReader = new FileReader();
           fileReader.onload = (e) => {
 
-            if (fileReader.result != null){
+            if (fileReader.result != null) {
               const result = fileReader.result.toString().split("\n")
 
               for (var line of result) {
-                  try{
-                    var log: LogObject = JSON.parse(line);
-                    log.id = uuidv4();
-                    this.logs.push(log)
-                  }catch (e){
-
-                  }
+                try {
+                  var log: LogObject = JSON.parse(line);
+                  log['@timestamp'] = new Date(log['@timestamp']);
+                  log.id = uuidv4();
+                  this.logs.push(log)
+                } catch (e) {
+                }
               }
 
-              this.router.navigateByUrl('dashboard', {
-                state: { data: { logs: this.logs} }
-              });
+              if (this.logs.length > 0) {
+                this.router.navigateByUrl('dashboard', {
+                  state: { data: { logs: this.logs } }
+                });
+              }else{
+                this.messageService.add({
+                  severity: 'info',
+                  summary: 'Informação',
+                  detail: 'Nenhum registro encontrado'
+                });
+              }
+
             }
           };
           fileReader.readAsText(file);

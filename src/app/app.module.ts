@@ -1,23 +1,21 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import {CardModule} from 'primeng/card';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
-import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ButtonModule } from 'primeng/button';
-import { SelectButtonModule } from 'primeng/selectbutton';
 import { CalendarModule } from 'primeng/calendar';
 
 import { TableModule } from 'primeng/table';
 import { TabViewModule } from 'primeng/tabview';
-import { AccordionModule } from 'primeng/accordion';
 
-import { MenubarModule } from 'primeng/menubar';
 import { DialogModule } from 'primeng/dialog';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
@@ -46,17 +44,15 @@ registerLocaleData(localePt);
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    FormsModule,
+    MultiSelectModule,
     CardModule,
     InputTextModule,
-    InputNumberModule,
     InputTextareaModule,
     ButtonModule,
-    SelectButtonModule,
     CalendarModule,
     TableModule,
     TabViewModule,
-    AccordionModule,
-    MenubarModule,
     DialogModule,
     ConfirmDialogModule,
     ConfirmPopupModule,

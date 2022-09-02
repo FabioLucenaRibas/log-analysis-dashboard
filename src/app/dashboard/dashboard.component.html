@@ -1,37 +1,48 @@
-<p-table #dt1 [value]="logs" dataKey="id" responsiveLayout="scroll" [paginator]="true" [rows]="10"
-    [showCurrentPageReport]="true" responsiveLayout="scroll"
+<p-table #dt1 [value]="logs" [columns]="selectedColumns" dataKey="id" responsiveLayout="scroll" [paginator]="true"
+    [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
     currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
     [rowsPerPageOptions]="[10,25,50,100]"
-    [globalFilterFields]="['ecs.version','user.name','canal','service.name', 'service.version', 'container.name', 
+    [globalFilterFields]="['@timestamp', '@version', 'ecs.version','user.name','canal','service.name', 'service.version', 'container.name', 
     'tags','tracing.uuid','tracing.request_id', 'tracing.idSessaoFrwk', 'log.level', 'log.logger', 'message', 'error.stack_hash', 'error.stack_trace']">
     <ng-template pTemplate="caption">
-        <div class="p-d-flex">
-            <button type="button" pButton class="p-button-text p-button-rounded p-button-plain mr-2"
-                [routerLink]="['../home']" icon="pi pi-chevron-left"></button>
 
-            <span class="p-input-icon-left p-ml-auto">
-                <i class="pi pi-search"></i>
-                <input #filtro pInputText type="text" (input)="dt1.filterGlobal(filtro.value, 'contains')"
-                    placeholder="Pesquisar palavra-chave" />
-            </span>
+        <div class="formgrid grid">
+            <div class="field col-12 md:col-6">
+                <button type="button" pButton class="p-button-text p-button-rounded p-button-plain mr-2"
+                    [routerLink]="['../home']" icon="pi pi-chevron-left"></button>
+
+                <span class="p-input-icon-left p-ml-auto">
+                    <i class="pi pi-search"></i>
+                    <input #filtro pInputText type="text" (input)="dt1.filterGlobal(filtro.value, 'contains')"
+                        placeholder="Pesquisar palavra-chave" [style]="{width: '150%'}" />
+                </span>
+            </div>
+            <div class="field col-12 md:col-6 text-right">
+                <p-multiSelect [options]="cols" [(ngModel)]="selectedColumns" optionLabel="header" class="mr-2"
+                    selectedItemsLabel="{0} colunas selecionadas" [style]="{minWidth: '200px'}"
+                    placeholder="Escolher colunas">
+                </p-multiSelect>
+                <button pButton label="Limpar" class="p-button-outlined" icon="pi pi-filter-slash"
+                    (click)="clear(dt1)"></button>
+            </div>
+
         </div>
     </ng-template>
-    <ng-template pTemplate="header">
+    <ng-template pTemplate="header" let-columns>
         <tr>
             <th style="width: 3rem"></th>
-            <th style="flex-basis:25%" pSortableColumn="@timestamp">@timestamp <p-sortIcon field="@timestamp">
-                </p-sortIcon>
+            <th style="flex-basis:25%" pSortableColumn="@timestamp">@timestamp
+                <p-columnFilter type="date" field="@timestamp" display="menu"></p-columnFilter>
+                <p-sortIcon field="@timestamp"></p-sortIcon>
             </th>
-            <th style="flex-basis:25%" pSortableColumn="log.level">Level <p-sortIcon field="log.level"></p-sortIcon>
-            </th>
-            <th style="flex-basis:25%" pSortableColumn="service.name">Service <p-sortIcon field="service.name">
-                </p-sortIcon>
-            </th>
-            <th style="flex-basis:25%" pSortableColumn="message">message <p-sortIcon field="message"></p-sortIcon>
+            <th *ngFor="let col of columns" style="flex-basis:25%" pSortableColumn={{col.header}}>
+                {{col.header}}
+                <p-columnFilter type="text" field={{col.header}} display="menu"></p-columnFilter>
+                <p-sortIcon field={{col.header}}></p-sortIcon>
             </th>
         </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-log let-expanded="expanded">
+    <ng-template pTemplate="body" let-log let-expanded="expanded" let-columns="columns">
         <tr>
             <td>
                 <button type="button" pButton pRipple [pRowToggler]="log"
@@ -39,9 +50,26 @@
                     [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
             </td>
             <td style="flex-basis:25%">{{log?.['@timestamp'] | date : 'dd/MM/yyyy HH:mm:ss:SSS'}}</td>
-            <td style="flex-basis:25%">{{log?.log?.level}}</td>
-            <td style="flex-basis:25%">{{log?.service?.name}}</td>
-            <td style="flex-basis:25%">{{log?.message.substring(0,100) + '..'}}</td>
+
+            <td *ngFor="let col of columns" [ngSwitch]="col.field" style="flex-basis:25%">
+                <div *ngSwitchCase="'@version'">{{log?.['@version']}}</div>
+                <div *ngSwitchCase="'ecs.version'">{{log?.ecs?.version}}</div>
+                <div *ngSwitchCase="'user.name'">{{log?.user?.name}}</div>
+                <div *ngSwitchCase="'canal'">{{log?.canal}}</div>
+                <div *ngSwitchCase="'service.name'">{{log?.service?.name}}</div>
+                <div *ngSwitchCase="'service.version'">{{log?.service?.version}}</div>
+                <div *ngSwitchCase="'container.name'">{{log?.container?.name}}</div>
+                <div *ngSwitchCase="'tags'">{{log?.tags}}</div>
+                <div *ngSwitchCase="'tracing.uuid'">{{log?.tracing?.uuid}}</div>
+                <div *ngSwitchCase="'tracing.request_id'">{{log?.tracing?.request_id}}</div>
+                <div *ngSwitchCase="'tracing.idSessaoFrwk'">{{log?.tracing?.idSessaoFrwk}}</div>
+                <div *ngSwitchCase="'log.level'">{{log?.log?.level}}</div>
+                <div *ngSwitchCase="'log.logger'">{{log?.log?.logger}}</div>
+                <div *ngSwitchCase="'message'">{{log?.message.substring(0,115).concat(log?.message != undefined &&
+                    log.message.length > 115 ? '...': '')}}</div>
+                <div *ngSwitchCase="'error.stack_hash'">{{log?.error?.stack_hash}}</div>
+                <div *ngSwitchCase="'error.stack_trace'">{{log?.error?.stack_trace}}</div>
+            </td>
         </tr>
     </ng-template>
     <ng-template pTemplate="rowexpansion" let-log>

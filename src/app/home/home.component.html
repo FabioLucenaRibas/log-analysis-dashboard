@@ -4,7 +4,7 @@
             <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)"
                 (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
                 <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
-                    <div>
+                    <div style="color: white;">
                         <div class="col text-center">
                             <i class="pi pi-upload" style="font-size: 2rem"></i>
                         </div>
@@ -15,8 +15,8 @@
                             ou
                         </div>
                         <div class="col flex align-items-center justify-content-center">
-                            <button pButton type="button" class="p-button-info" (click)="openFileSelector()">Browse
-                                Files</button>
+                            <button pButton type="button" class="p-button-info p-button-outlined"
+                                (click)="openFileSelector()">Procurar arquivos</button>
                         </div>
                     </div>
                 </ng-template>
