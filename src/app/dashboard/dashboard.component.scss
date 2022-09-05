@@ -11,8 +11,15 @@ html{
     max-width: 100%;
 }
 
-.p-datatable .p-sortable-column:not(.p-highlight):hover{
-    background: #20262e;
+.p-datatable {
+
+    .p-sortable-column.p-highlight:hover{
+        background: #20262e;
+    }
+
+    .p-sortable-column:not(.p-highlight):hover{
+        background: #20262e;
+    }
 }
 
 .table{

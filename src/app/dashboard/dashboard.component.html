@@ -85,7 +85,7 @@
                                         <td>
                                             <input type="text" disabled="true" pInputText
                                                 class="p-inputtext-sm w-full max-w-screen"
-                                                [value]="log?.['@timestamp']" />
+                                                [value]="log?.['@timestamp']?.toISOString()" />
                                         </td>
                                     </tr>
                                     <tr>
