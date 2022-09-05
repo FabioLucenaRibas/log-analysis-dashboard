@@ -1,5 +1,5 @@
-<p-table #dt1 [value]="logs" [columns]="selectedColumns" dataKey="id" responsiveLayout="scroll" [paginator]="true"
-    [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
+<p-table #dt1 [value]="logs" [columns]="selectedColumns" class="table" dataKey="id" responsiveLayout="scroll" [paginator]="true"
+    [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll" sortField="@timestamp" [sortOrder]=-1
     currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
     [rowsPerPageOptions]="[10,25,50,100]"
     [globalFilterFields]="['@timestamp', '@version', 'ecs.version','user.name','canal','service.name', 'service.version', 'container.name', 
@@ -75,7 +75,7 @@
     <ng-template pTemplate="rowexpansion" let-log>
         <tr>
             <td colspan="18">
-                <div class="p-3 max-w-screen overflow-y -auto">
+                <div class="p-3 overflow-y -auto" style="max-width: 99vw;">
                     <p-tabView>
                         <p-tabPanel header="Table">
                             <div class="max-w-screen overflow-y -auto">

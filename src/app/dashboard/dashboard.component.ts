@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { InputText } from 'primeng/inputtext';
 import { Table } from 'primeng/table';
@@ -7,7 +7,8 @@ import { LogObject } from '../model/LogObject.model';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class DashboardComponent implements OnInit {
 
@@ -80,6 +81,9 @@ export class DashboardComponent implements OnInit {
   
   clear(table: Table) {
     table.clear();
+    table.sortField = "@timestamp";
+    table.sortOrder = -1;
+    table.sortSingle();
     this.filtro.nativeElement.value = '';
     this._selectedColumns = this.defaultSelection;
   }

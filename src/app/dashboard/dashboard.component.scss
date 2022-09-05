@@ -1,3 +1,8 @@
+
+html{
+    background: #20262e;
+}
+
 .textarea {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -5,4 +10,51 @@
     height: 500px;
 	width: 100%;
     max-width: 100%;
+}
+
+.p-datatable .p-sortable-column:not(.p-highlight):hover{
+    background: #20262e;
+}
+
+.table{
+	position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.p-datatable-wrapper{
+    overflow-x: unset !important;
+}
+
+.p-datatable-header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 72px;
+    z-index: 3;
+}
+
+.p-datatable-thead{
+    position: sticky;
+    top: 65px;
+    left: 0;
+    right: 0;
+    z-index: 2;
+}
+
+.p-datatable-table{
+    margin-top: 72px !important;
+	margin-bottom: 62px !important;
+    display: inline-table;
+}
+
+.p-paginator-bottom{
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 62px;
 }
