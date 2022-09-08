@@ -21,7 +21,7 @@
 LogAnalysisDashboard foi construído em Angular utilizando o PrimeNG como base para o desenvolvimento das funcionalidades, foi desenvolvida para realizar a análise de logs a parti de um arquivo de forma simplificada e de fácil acessibilidade no estilo Kibana.
 
 
-Acesse agora atreveis do link: https://fabiolucenaribas.github.io/log-analysis-dashboard
+Acesse agora através do link: https://fabiolucenaribas.github.io/log-analysis-dashboard
 
 ## ✨ Recursos
 
