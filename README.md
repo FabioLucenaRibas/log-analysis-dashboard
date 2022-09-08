@@ -26,10 +26,13 @@ Acesse agora atreveis do link: https://fabiolucenaribas.github.io/log-analysis-d
 ## ✨ Recursos
 
 - Drag&drop para carregamento do arquivo de log
-- Escolher de forma dinâmica qual campo será exibido na listagem
+- Escolher de forma dinâmica qual coluna será exibido na listagem
 - Filtro geral por palavra-chave
-- Filtro individual por campo possibilitando combinações complexas para consulta
+- Filtro individual por coluna possibilitando combinações complexas
+- Ordenação dos registros por coluna
+- Exibição detalhada do registro de forma organizada a melhorar a análise dos logs, com duas opções em Tabela e JSON
 - Paginação de registros e opção para escolher a quantidade exibida por página
+
 
 ## 📦 Como baixar o projeto
 
