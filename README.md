@@ -1,27 +1,47 @@
-# LogAnalysisDashboard
+[![Angular Logo](https://www.vectorlogo.zone/logos/angular/angular-icon.svg)](https://angular.io/)  [![PrimeNG Logo](https://www.primefaces.org/primeng/assets/showcase/images/primeng.svg)](https://www.primefaces.org/primeng/) 
+## LogAnalysisDashboard
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.1.
+<p align="center">
+    <a href="https://gatsbyjs.com/contributing/how-to-contribute/">
+    <img src="https://img.shields.io/badge/PRs-Bem--Vindos-brightgreen" alt="PRs Bem-Vindos!" />
+  </a>
+  <a href="https://github.com/FabioLucenaRibas/log-analysis-dashboard/actions/workflows/build-deploy.yml">
+    <img src="https://github.com/FabioLucenaRibas/log-analysis-dashboard/actions/workflows/build-deploy.yml/badge.svg?branch=main" alt="Build & Deploy" />
+  </a>
+</p>
 
-## Development server
+# Indice
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- [Sobre](#-sobre)
+- [Recursos](#-recursos)
+- [Como baixar o projeto](#-como-baixar-o-projeto)
 
-## Code scaffolding
+## 🔖&nbsp; Sobre
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+LogAnalysisDashboard foi construido em Angular utilizando o PrimeNG como base para o desenvolvimento das funcionalidades, foi desenvolvida para realizar a analise de logs aparti de um arquivo de forma simplificada e de facil acessibilidade no estilo Kibana.
 
-## Build
+Acesse agora atraveis do link: https://fabiolucenaribas.github.io/log-analysis-dashboard
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## ✨ Recursos
 
-## Running unit tests
+- Drag and drop para carregamento do arquivo de log
+- Escolher de forma dinamica qual campo será exibido na listagem
+- Filtro geral por palavra-chave
+- Filtro individual por campo possibilitando combinações complexas para consulta
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## 📦 Como baixar o projeto
 
-## Running end-to-end tests
+```bash
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+    # Clonar o repositório
+    $ git clone https://github.com/FabioLucenaRibas/log-analysis-dashboard.git
 
-## Further help
+    # Entrar no diretório
+    $ cd log-analysis-dashboard
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+    # Instalar as dependências
+    $ npm install
+
+    # Iniciar o projeto
+    $ npm run start
+```
