@@ -29,6 +29,7 @@ Acesse agora atreveis do link: https://fabiolucenaribas.github.io/log-analysis-d
 - Escolher de forma dinâmica qual campo será exibido na listagem
 - Filtro geral por palavra-chave
 - Filtro individual por campo possibilitando combinações complexas para consulta
+- Paginação de registros e opção para escolher a quantidade exibida por página
 
 ## 📦 Como baixar o projeto
 
