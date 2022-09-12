@@ -65,7 +65,7 @@
                 <div *ngSwitchCase="'tracing.idSessaoFrwk'">{{log?.tracing?.idSessaoFrwk}}</div>
                 <div *ngSwitchCase="'log.level'">{{log?.log?.level}}</div>
                 <div *ngSwitchCase="'log.logger'">{{log?.log?.logger}}</div>
-                <div *ngSwitchCase="'message'">{{log?.message.substring(0,115).concat(log?.message != undefined &&
+                <div *ngSwitchCase="'message'">{{log?.message.substring(0,115).concat(log?.message !== undefined &&
                     log.message.length > 115 ? '...': '')}}</div>
                 <div *ngSwitchCase="'error.stack_hash'">{{log?.error?.stack_hash}}</div>
                 <div *ngSwitchCase="'error.stack_trace'">{{log?.error?.stack_trace}}</div>

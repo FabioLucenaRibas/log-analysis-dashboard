@@ -9,6 +9,7 @@ app/**/*.js.map
 /release
 main.js
 *.js.map
+/e2e/*
 
 # dependencies
 node_modules/
