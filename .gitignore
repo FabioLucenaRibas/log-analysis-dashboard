@@ -6,6 +6,10 @@ tmp/
 app/**/*.js
 app/**/*.js.map
 
+/release
+main.js
+*.js.map
+
 # dependencies
 node_modules/
 bower_components/
