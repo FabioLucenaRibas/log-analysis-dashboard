@@ -1,6 +1,8 @@
 {
   "name": "log-analysis-dashboard",
   "version": "1.0.0",
+  "author": "Fábio Lucena Ribas",
+  "description": "https://github.com/FabioLucenaRibas/log-analysis-dashboard",
   "main": "main.js",
   "private": true,
   "dependencies": {}
