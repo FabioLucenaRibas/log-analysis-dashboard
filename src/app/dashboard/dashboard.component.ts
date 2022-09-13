@@ -44,7 +44,7 @@ export class DashboardComponent implements OnInit {
   }
 
   carregarLogs() {
-    this.logs = this.data.logs
+    this.logs = this.data?.logs
   }
 
   carregarMultiSelect() {

@@ -1,0 +1,44 @@
+{
+  "productName": "LogAnalysisDashboard",
+  "asar": false,
+  "directories": {
+    "output": "release/"
+  },
+  "files": [
+    "**/*",
+    "!**/*.ts",
+    "!*.map",
+    "!package.json",
+    "!package-lock.json"
+  ],
+  "extraResources": [
+    {
+      "from": "dist/log-analysis-dashboard",
+      "to": "app",
+      "filter": [
+        "**/*"
+      ]
+    }
+  ],
+  "win": {
+    "icon": "dist/log-analysis-dashboard/assets/icons",
+    "target": [
+      "portable"
+    ]
+  },
+  "portable": {
+    "splashImage": "dist/log-analysis-dashboard/assets/icons/electron.bmp"
+  },
+  "mac": {
+    "icon": "dist/log-analysis-dashboard/assets/icons",
+    "target": [
+      "dmg"
+    ]
+  },
+  "linux": {
+    "icon": "dist/log-analysis-dashboard/assets/icons",
+    "target": [
+      "AppImage"
+    ]
+  }
+}

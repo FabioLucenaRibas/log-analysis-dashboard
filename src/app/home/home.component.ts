@@ -11,18 +11,14 @@ import { MessageService } from 'primeng/api';
   styleUrls: ['./home.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
 
   constructor(
     private router: Router,
     private messageService: MessageService,
   ) { }
 
-  ngOnInit(): void {
-  }
-
   logs: LogObject[] = [];
-
   public files: NgxFileDropEntry[] = [];
 
   public dropped(files: NgxFileDropEntry[]) {
@@ -55,7 +51,7 @@ export class HomeComponent implements OnInit {
                 this.router.navigateByUrl('dashboard', {
                   state: { data: { logs: this.logs } }
                 });
-              }else{
+              } else {
                 this.messageService.add({
                   severity: 'info',
                   summary: 'Informação',
@@ -82,7 +78,5 @@ export class HomeComponent implements OnInit {
   public fileLeave(event: any) {
     console.log(event);
   }
-
-
 
 }
