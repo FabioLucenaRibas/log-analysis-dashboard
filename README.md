@@ -31,7 +31,7 @@ Acesse agora através do link: https://fabiolucenaribas.github.io/log-analysis-d
 
 ou
 
-Baixe o executavel para sua plataforma Windows, Linux ou MacOS: [Aqui!](https://github.com/FabioLucenaRibas/log-analysis-dashboard/releases/latest)
+Baixe o executável para sua plataforma Windows, Linux ou MacOS: [Aqui!](https://github.com/FabioLucenaRibas/log-analysis-dashboard/releases/latest)
 
 ## ✨ Recursos
 
