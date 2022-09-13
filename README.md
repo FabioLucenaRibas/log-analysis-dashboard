@@ -29,6 +29,10 @@ LogAnalysisDashboard foi construído em Angular utilizando o PrimeNG como base p
 
 Acesse agora através do link: https://fabiolucenaribas.github.io/log-analysis-dashboard
 
+ou
+
+Baixe o executavel para sua plataforma Windows, Linux ou MacOS: [Aqui!](https://github.com/FabioLucenaRibas/log-analysis-dashboard/releases/latest)
+
 ## ✨ Recursos
 
 - Drag&drop para carregamento do arquivo de log
