@@ -208,5 +208,5 @@ jobs:
       - name: Upload Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "release"
+          artifacts: "release/release_windows.zip, release/release_ubuntu.zip, release/release_macos.zip"
           token: ${{ secrets.GITHUB_TOKEN }}
