@@ -8,6 +8,9 @@
   <a href="https://github.com/FabioLucenaRibas/log-analysis-dashboard/actions/workflows/build-deploy.yml">
     <img src="https://github.com/FabioLucenaRibas/log-analysis-dashboard/actions/workflows/build-deploy.yml/badge.svg?branch=main" alt="Build & Deploy" />
   </a>
+    <a href="https://github.com/FabioLucenaRibas/log-analysis-dashboard/actions/workflows/build-electron.yml">
+    <img src="https://github.com/FabioLucenaRibas/log-analysis-dashboard/actions/workflows/build-electron.yml/badge.svg" alt="Build Electron Win Linux MacOS" />
+  </a>
   <a href="">
     <img src="https://visitor-badge.glitch.me/badge?page_id=FabioLucenaRibas.log-analysis-dashboard&left_text=Visitas" alt="Visitas" />
   </a>

@@ -66,6 +66,7 @@ jobs:
         type: 'zip'
         filename: 'release_windows.zip'
         path: 'release'
+        exclusions: '*.yml* /*win-unpacked/* /*.icon-ico/*'
 
     - name: Upload Artifact
       if: success()
@@ -134,6 +135,7 @@ jobs:
         type: 'zip'
         filename: 'release_ubuntu.zip'
         path: 'release'
+        exclusions: '*.yml* /*linux-unpacked/*'
 
     - name: Upload Artifact
       if: success()
@@ -187,6 +189,7 @@ jobs:
         type: 'zip'
         filename: 'release_macos.zip'
         path: 'release'
+        exclusions: '*.blockmap* *.yml* /*mac/* /*.icon-icns/*'
 
     - name: Upload Artifact
       if: success()
@@ -208,5 +211,5 @@ jobs:
       - name: Upload Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "release"
+          artifacts: "release/release_windows.zip, release/release_ubuntu.zip, release/release_macos.zip"
           token: ${{ secrets.GITHUB_TOKEN }}
