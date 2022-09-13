@@ -205,15 +205,8 @@ jobs:
         with:
           name: release
 
-      - name: Archive Release
-        uses: thedoctor0/zip-release@main
-        with:
-          type: 'zip'
-          filename: 'release.zip'
-          path: 'release'
-
       - name: Upload Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "release.zip"
+          artifacts: "release"
           token: ${{ secrets.GITHUB_TOKEN }}
