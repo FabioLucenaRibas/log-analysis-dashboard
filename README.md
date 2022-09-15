@@ -2,7 +2,7 @@
 ## LogAnalysisDashboard
 
 <p align="center">
-    <a href="https://gatsbyjs.com/contributing/how-to-contribute/">
+    <a href="">
     <img src="https://img.shields.io/badge/PRs-Bem--Vindos-brightgreen" alt="PRs Bem-Vindos!" />
   </a>
   <a href="https://github.com/FabioLucenaRibas/log-analysis-dashboard/actions/workflows/build-deploy.yml">
