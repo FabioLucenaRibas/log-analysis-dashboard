@@ -35,6 +35,7 @@ Baixe o executável para sua plataforma Windows, Linux ou MacOS: [Aqui!](https:/
 
 ## ✨ Recursos
 
+- Funcionalidade multi-abas
 - Drag&drop para carregamento do arquivo de log
 - Escolher de forma dinâmica qual coluna será exibido na listagem
 - Filtro geral por palavra-chave
