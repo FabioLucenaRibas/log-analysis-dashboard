@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { NgxFileDropEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
 import { LogObject } from '../model/LogObject.model';
@@ -12,11 +13,13 @@ import { MessageService } from 'primeng/api';
   encapsulation: ViewEncapsulation.None
 })
 export class HomeComponent {
-
   constructor(
     private router: Router,
+    private title: Title,
     private messageService: MessageService,
-  ) { }
+  ) { 
+    title.setTitle('LogAnalysisDashboard');
+  }
 
   logs: LogObject[] = [];
   public files: NgxFileDropEntry[] = [];
@@ -31,6 +34,7 @@ export class HomeComponent {
       if (droppedFile.fileEntry.isFile) {
         const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
         fileEntry.file((file: File) => {
+          this.title.setTitle(file.name);
           const fileReader = new FileReader();
           fileReader.onload = (e) => {
 

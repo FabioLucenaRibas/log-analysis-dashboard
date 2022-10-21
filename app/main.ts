@@ -1,8 +1,9 @@
-import { app, BrowserWindow, screen } from 'electron';
+import { app, BrowserWindow, ipcMain, screen } from 'electron';
 import * as path from 'path';
 import * as fs from 'fs';
 import * as url from 'url';
 
+const ipc = ipcMain;
 let win: BrowserWindow;
 const args = process.argv.slice(1),
   serve = args.some(val => val === '--serve');
@@ -14,19 +15,49 @@ function createWindow(): BrowserWindow {
 
   // Create the browser window.
   win = new BrowserWindow({
-    x: 0,
-    y: 0,
-    width: size.width,
-    height: size.height,
+    width: 1600,
+    height: 800,
+    minWidth: 940,
+    minHeight: 560,
+    maxWidth: size.width,
+    maxHeight: size.height,
+    frame: false,
     autoHideMenuBar: true,
     webPreferences: {
       nodeIntegration: true,
+      contextIsolation: false,
       allowRunningInsecureContent: (serve) ? true : false,
       webSecurity: false,
+      webviewTag: true
       // contextIsolation: false,  // false if you want to run e2e test with Spectron
     },
   });
 
+  //win.webContents.openDevTools();
+
+  ipc.on('minimizeApp', () => {
+    win.minimize();
+  });
+
+  ipc.on('maximizeRestoreApp', () => {
+    if (win.isMaximized()) {
+      win.restore();
+    } else {
+      win.maximize();
+    }
+  });
+
+  ipc.on('closeApp', () => {
+    win.close();
+  });
+
+  win.on('maximize', () => {
+    win.webContents.send('isMaximize');
+  });
+
+  win.on('unmaximize', () => {
+    win.webContents.send('isRestored');
+  });
 
   if (serve) {
     win.webContents.openDevTools();
@@ -38,9 +69,9 @@ function createWindow(): BrowserWindow {
     // Path when running electron executable
     let pathIndex = './index.html';
 
-    if (fs.existsSync(path.join(__dirname, '../dist/log-analysis-dashboard/index.html'))) {
-       // Path when running electron in local folder
-      pathIndex = '../dist/log-analysis-dashboard/index.html';
+    if (fs.existsSync(path.join(__dirname, 'home/index.html'))) {
+      // Path when running electron in local folder
+      pathIndex = 'home/index.html';
     }
 
     win.loadURL(url.format({

@@ -18,6 +18,13 @@
       "filter": [
         "**/*"
       ]
+    },
+    {
+      "from": "node_modules/electron-tabs/dist/electron-tabs.js",
+      "to": "app",
+      "filter": [
+        "**/*"
+      ]
     }
   ],
   "win": {

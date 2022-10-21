@@ -1,0 +1,60 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    color: #949AA7;
+    background-color: #2C313C;
+}
+
+.topBar {
+    width: 100%;
+    height: 100%;
+}
+
+.topBar>.titleBarBtns {
+    display: flex;
+    position: fixed;
+    right: 0;
+    top: 0;
+    -webkit-app-region: none;
+}
+
+.titleBarBtns>.topBtn {
+    width: 40px;
+    height: 32px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.titleBarBtns>.topBtn:hover {
+    background-color: #272C36;
+}
+
+.titleBarBtns>.closeBtn:hover {
+    background-color: #D61425 !important;
+}
+
+.titleBarBtns>.topBtn:active {
+    background-color: #4F9FEE;
+}
+
+.titleBarBtns>.minimizeBtn {
+    background-image: url('../images/minimize.png');
+}
+
+.titleBarBtns>.maximizeBtn {
+    background-image: url('../images/maximize.png');
+}
+
+.titleBarBtns>.restoreBtn {
+    background-image: url('../images/restore.png');
+}
+
+.titleBarBtns>.closeBtn {
+    background-image: url('../images/close.png');
+}
