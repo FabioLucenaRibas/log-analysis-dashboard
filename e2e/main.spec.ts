@@ -47,7 +47,7 @@ test.describe('Check Aplication', async () => {
   // });
 
   test('Check Content load', async () => {
-    const elem = await firstWindow.$('app-home div p-card');
+    const elem = await firstWindow.$('body');
     expect(elem).not.toBeNull();
   });
 
