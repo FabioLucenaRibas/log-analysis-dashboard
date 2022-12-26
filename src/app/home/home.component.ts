@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { NgxFileDropEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
-import { LogObject } from '../model/LogObject.model';
-import { v4 as uuidv4 } from 'uuid';
+import { FileSystemDirectoryEntry, FileSystemFileEntry, NgxFileDropEntry } from 'ngx-file-drop';
 import { MessageService } from 'primeng/api';
+import { v4 as uuidv4 } from 'uuid';
+import { LogObject } from '../model/LogObject.model';
 
 @Component({
   selector: 'app-home',
@@ -17,62 +17,81 @@ export class HomeComponent {
     private router: Router,
     private title: Title,
     private messageService: MessageService,
-  ) { 
+  ) {
     title.setTitle('LogAnalysisDashboard');
   }
 
   logs: LogObject[] = [];
-  public files: NgxFileDropEntry[] = [];
 
-  public dropped(files: NgxFileDropEntry[]) {
+  public async dropped(filesDrop: NgxFileDropEntry[]) {
+    var titleFiles: string[] = [];
+    this.title.setTitle('LogAnalysisDashboard');
     this.logs = [];
 
-    this.files = files;
-    for (const droppedFile of files) {
-
+    for (const droppedFile of filesDrop) {
       // Is it a file?
       if (droppedFile.fileEntry.isFile) {
         const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
-        fileEntry.file((file: File) => {
-          this.title.setTitle(file.name);
-          const fileReader = new FileReader();
-          fileReader.onload = (e) => {
-
-            if (fileReader.result != null) {
-              const result = fileReader.result.toString().split("\n")
-
-              for (var line of result) {
-                try {
-                  var log: LogObject = JSON.parse(line);
-                  log['@timestamp'] = new Date(log['@timestamp']);
-                  log.id = uuidv4();
-                  this.logs.push(log)
-                } catch (e) {
-                }
+        await fileEntry.file(async (file: File) => {
+          await this.readFile(file).then(
+            result => {
+              if (result != undefined && result.length > 0) {
+                titleFiles.push(file.name);
+                this.logs = this.logs.concat(result);
               }
-
-              if (this.logs.length > 0) {
-                this.router.navigateByUrl('dashboard', {
-                  state: { data: { logs: this.logs } }
-                });
-              } else {
-                this.messageService.add({
-                  severity: 'info',
-                  summary: 'Informação',
-                  detail: 'Nenhum registro encontrado'
-                });
-              }
-
+            },
+            reason => {
+              console.log("Erro ao ler arquivo, %s", reason);
             }
-          };
-          fileReader.readAsText(file);
+          );
         });
+
       } else {
         // It was a directory (empty directories are added, otherwise only files)
         const fileEntry = droppedFile.fileEntry as FileSystemDirectoryEntry;
         console.log(droppedFile.relativePath, fileEntry);
       }
     }
+
+    if (this.logs.length > 0) {
+      this.title.setTitle(titleFiles.join('; '));
+      this.router.navigateByUrl('dashboard', {
+        state: { data: { logs: this.logs } }
+      });
+    } else {
+      this.messageService.add({
+        severity: 'info',
+        summary: 'Informação',
+        detail: 'Nenhum registro encontrado'
+      });
+    }
+  }
+
+  private readFile(file: File) {
+    return new Promise<LogObject[]>((resolve, reject) => {
+      var fr = new FileReader();
+      fr.onload = () => {
+        var logRecord: LogObject[] = []
+        if (fr.result != null) {
+          const result = fr.result.toString().split("\n")
+
+          for (var line of result) {
+            try {
+              var log: LogObject = JSON.parse(line);
+              log['@timestamp'] = new Date(log['@timestamp']);
+              log.id = uuidv4();
+              logRecord.push(log)
+            } catch (e) {
+            }
+          }
+        }
+
+        resolve(logRecord)
+      };
+
+      fr.onerror = reject;
+      fr.readAsText(file);
+    });
   }
 
   public fileOver(event: any) {
