@@ -54,7 +54,9 @@ export class HomeComponent {
     }
 
     if (this.logs.length > 0) {
-      this.title.setTitle(titleFiles.join('; '));
+      let title = titleFiles.join('; ');
+      this.title.setTitle(title.substring(0, 75).concat(title !== undefined &&
+        title.length > 75 ? '...' : ''));
       this.router.navigateByUrl('dashboard', {
         state: { data: { logs: this.logs } }
       });

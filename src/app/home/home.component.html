@@ -1,5 +1,5 @@
 <div class="grid card-center">
-    <p-card class="col-6 col-offset-3">
+    <p-card class="col-8 col-offset-2 sm:col-8 sm:col-offset-2">
         <div class="center">
             <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)"
                 (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
@@ -21,6 +21,18 @@
                     </div>
                 </ng-template>
             </ngx-file-drop>
+            <div class="menu-link">
+                <ul>
+                    <li>
+                        <a href="https://github.com/FabioLucenaRibas/log-analysis-dashboard" target="_blank"
+                            rel="noopener"><i class="pi pi-github"></i> Repositório GitHub</a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/in/fabiolucenaribas" target="_blank" rel="noopener">
+                            <i class="pi pi-linkedin"></i> Fábio Lucena Ribas</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </p-card>
 
