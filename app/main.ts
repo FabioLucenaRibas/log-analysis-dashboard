@@ -1,12 +1,14 @@
-import { app, BrowserWindow, ipcMain, screen } from 'electron';
-import * as path from 'path';
+import { app, BrowserWindow, ipcMain, screen, shell } from 'electron';
 import * as fs from 'fs';
+import * as path from 'path';
 import * as url from 'url';
 
 const ipc = ipcMain;
 let win: BrowserWindow;
 const args = process.argv.slice(1),
-  serve = args.some(val => val === '--serve');
+  serve = args.some(val => val === '--serve'),
+  dev = args.some(val => val === '--dev'),
+  openDevTools = args.some(val => val === '--openDevTools');
 
 function createWindow(): BrowserWindow {
 
@@ -19,21 +21,22 @@ function createWindow(): BrowserWindow {
     height: 800,
     minWidth: 940,
     minHeight: 560,
-    maxWidth: size.width,
-    maxHeight: size.height,
     frame: false,
     autoHideMenuBar: true,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
       allowRunningInsecureContent: (serve) ? true : false,
+      nodeIntegrationInSubFrames: true,
       webSecurity: false,
-      webviewTag: true
+      webviewTag: true,
       // contextIsolation: false,  // false if you want to run e2e test with Spectron
     },
   });
 
-  //win.webContents.openDevTools();
+  if (openDevTools) {
+    win.webContents.openDevTools();
+  }
 
   ipc.on('minimizeApp', () => {
     win.minimize();
@@ -77,7 +80,8 @@ function createWindow(): BrowserWindow {
     win.loadURL(url.format({
       pathname: path.join(__dirname, pathIndex),
       protocol: 'file:',
-      slashes: true
+      slashes: true,
+      query: { isdev: dev, opendevtools: openDevTools }
     }));
   }
 
@@ -98,6 +102,15 @@ try {
   // Some APIs can only be used after this event occurs.
   // Added 400 ms to fix the black background issue while using transparent window. More detais at https://github.com/electron/electron/issues/15947
   app.on('ready', () => setTimeout(createWindow, 400));
+
+  app.on('web-contents-created', function (webContentsCreatedEvent, contents) {
+    if (contents.getType() === 'webview') {
+      contents.setWindowOpenHandler(({ url }) => {
+        shell.openExternal(url);
+        return { action: 'deny' }
+      })
+    }
+  });
 
   // Quit when all windows are closed.
   app.on('window-all-closed', () => {

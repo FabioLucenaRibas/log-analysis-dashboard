@@ -1,4 +1,4 @@
-html{
+html {
     background: #20262e;
 }
 
@@ -15,11 +15,33 @@ html{
     margin: 0;
 }
 
-.ngx-file-drop__content{
+.ngx-file-drop__content {
     height: 50vh !important;
 }
 
-.ngx-file-drop__drop-zone{
+.ngx-file-drop__drop-zone {
     height: 50vh !important;
     border: 2px dotted #ffffff !important;
+}
+
+.p-card-content {
+    padding-bottom: 0 !important;
+}
+
+.menu-link {
+    ul {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 0;
+    }
+
+    li {
+        list-style-type: none;
+        margin-right: 10px;
+    }
+
+    a {
+        text-decoration: none;
+        color: #7fd8e6;
+    }
 }
