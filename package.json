@@ -1,6 +1,6 @@
 {
   "name": "log-analysis-dashboard",
-  "version": "0.0.1",
+  "version": "0.0.10",
   "author": "Fábio Lucena Ribas",
   "homepage": "https://github.com/FabioLucenaRibas/log-analysis-dashboard",
   "description": "Log analysis dashboard",
@@ -33,8 +33,10 @@
     "@angular/platform-browser": "^14.0.0",
     "@angular/platform-browser-dynamic": "^14.0.0",
     "@angular/router": "^14.0.0",
+    "@materia-ui/ngx-monaco-editor": "^6.0.0",
     "electron-tabs": "^1.0.1",
     "eslint": "^8.23.1",
+    "monaco-editor": "^0.34.1",
     "ngx-file-drop": "^14.0.1",
     "primeflex": "^3.2.1",
     "primeicons": "^5.0.0",

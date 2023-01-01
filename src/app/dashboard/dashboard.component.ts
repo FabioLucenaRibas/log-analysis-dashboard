@@ -1,6 +1,6 @@
 import { Component, ElementRef, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
-import { InputText } from 'primeng/inputtext';
+import { MonacoStandaloneCodeEditor } from '@materia-ui/ngx-monaco-editor';
 import { Table } from 'primeng/table';
 import { LogObject } from '../model/LogObject.model';
 
@@ -17,6 +17,7 @@ export class DashboardComponent implements OnInit {
 
   data: any;
   logs: LogObject[] = [];
+  editorOptions = { theme: 'vs-dark', language: 'json' };
 
   cols: any[] = [];
   _selectedColumns: any[] = [];
@@ -78,7 +79,7 @@ export class DashboardComponent implements OnInit {
 
     this._selectedColumns = this.defaultSelection;
   }
-  
+
   clear(table: Table) {
     table.clear();
     table.sortField = "@timestamp";
@@ -86,5 +87,12 @@ export class DashboardComponent implements OnInit {
     table.sortSingle();
     this.filtro.nativeElement.value = '';
     this._selectedColumns = this.defaultSelection;
+  }
+
+  editorInit(editor: MonacoStandaloneCodeEditor) {
+    editor.updateOptions({
+      readOnly: true,
+      wordWrap: 'on'
+    });
   }
 }

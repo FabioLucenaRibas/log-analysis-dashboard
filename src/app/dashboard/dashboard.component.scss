@@ -1,40 +1,44 @@
-html{
+html {
     background: #20262e;
 }
 
+.editor-container {
+    border-radius: 6px;
+}
+
 .textarea {
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
     height: 500px;
-	width: 100%;
+    width: 100%;
     max-width: 100%;
 }
 
 .p-datatable {
 
-    .p-sortable-column.p-highlight:hover{
+    .p-sortable-column.p-highlight:hover {
         background: #20262e;
     }
 
-    .p-sortable-column:not(.p-highlight):hover{
+    .p-sortable-column:not(.p-highlight):hover {
         background: #20262e;
     }
 }
 
-.table{
-	position: absolute;
+.table {
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
 }
 
-.p-datatable-wrapper{
+.p-datatable-wrapper {
     overflow-x: unset !important;
 }
 
-.p-datatable-header{
+.p-datatable-header {
     position: fixed;
     top: 0;
     left: 0;
@@ -43,7 +47,7 @@ html{
     z-index: 3;
 }
 
-.p-datatable-thead{
+.p-datatable-thead {
     position: sticky;
     top: 65px;
     left: 0;
@@ -51,13 +55,13 @@ html{
     z-index: 2;
 }
 
-.p-datatable-table{
+.p-datatable-table {
     margin-top: 72px !important;
-	margin-bottom: 62px !important;
+    margin-bottom: 62px !important;
     display: inline-table;
 }
 
-.p-paginator-bottom{
+.p-paginator-bottom {
     position: fixed;
     left: 0;
     right: 0;

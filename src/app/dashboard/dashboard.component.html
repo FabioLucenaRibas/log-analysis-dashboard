@@ -1,6 +1,6 @@
-<p-table #dt1 [value]="logs" [columns]="selectedColumns" class="table" dataKey="id" responsiveLayout="scroll" [paginator]="true"
-    [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll" sortField="@timestamp" [sortOrder]=-1
-    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+<p-table #dt1 [value]="logs" [columns]="selectedColumns" class="table" dataKey="id" responsiveLayout="scroll"
+    [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll" sortField="@timestamp"
+    [sortOrder]=-1 currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
     [rowsPerPageOptions]="[10,25,50,100]"
     [globalFilterFields]="['@timestamp', '@version', 'ecs.version','user.name','canal','service.name', 'service.version', 'container.name', 
     'tags','tracing.uuid','tracing.request_id', 'tracing.idSessaoFrwk', 'log.level', 'log.logger', 'message', 'error.stack_hash', 'error.stack_trace']">
@@ -79,7 +79,7 @@
                     <p-tabView>
                         <p-tabPanel header="Table">
                             <div class="max-w-screen overflow-y -auto">
-                                <table class="p-datatable-table">
+                                <table>
                                     <tr>
                                         <td style="flex-basis:100px">@timestamp</td>
                                         <td>
@@ -214,7 +214,10 @@
                             </div>
                         </p-tabPanel>
                         <p-tabPanel header="JSON">
-                            <textarea class="textarea" [rows]="5" [cols]="30" pInputTextarea>{{log | json}}</textarea>
+                            <div style="height: 500px;">
+                                <ngx-monaco-editor [options]="editorOptions" [ngModel]="log | json"
+                                    (init)="editorInit($event)"></ngx-monaco-editor>
+                            </div>
                         </p-tabPanel>
                     </p-tabView>
                 </div>

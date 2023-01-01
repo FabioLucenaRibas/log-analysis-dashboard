@@ -31,6 +31,7 @@ import { HomeComponent } from './home/home.component';
 
 import { NgxFileDropModule } from 'ngx-file-drop';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { MonacoEditorModule } from '@materia-ui/ngx-monaco-editor';
 
 registerLocaleData(localePt);
 
@@ -59,7 +60,8 @@ registerLocaleData(localePt);
     ToastModule,
     MessagesModule,
     MessageModule,
-    NgxFileDropModule
+    NgxFileDropModule,
+    MonacoEditorModule
   ],
   providers: [
     DatePipe,
