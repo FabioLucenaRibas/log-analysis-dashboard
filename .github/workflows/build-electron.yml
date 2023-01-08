@@ -66,7 +66,7 @@ jobs:
         type: 'zip'
         filename: 'release_windows.zip'
         path: 'release'
-        exclusions: '*.yml win-unpacked .icon-ico'
+        exclusions: '*/*.yml */win-unpacked */.icon-ico'
 
     - name: Upload Artifact
       if: success()
