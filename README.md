@@ -1,4 +1,4 @@
-[![Angular Logo](https://www.vectorlogo.zone/logos/angular/angular-icon.svg)](https://angular.io/)  [![PrimeNG Logo](https://www.primefaces.org/primeng/assets/showcase/images/primeng.svg)](https://www.primefaces.org/primeng/) 
+ [![Electronjs Logo](https://www.electronjs.org/assets/img/logo.svg)](https://www.electronjs.org/) [![Angular Logo](https://www.vectorlogo.zone/logos/angular/angular-icon.svg)](https://angular.io/)  [![PrimeNG Logo](https://www.primefaces.org/primeng/assets/showcase/images/primeng.svg)](https://www.primefaces.org/primeng/) 
 ## LogAnalysisDashboard
 
 <p align="center">
